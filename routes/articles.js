@@ -11,7 +11,6 @@ router.get('/list', authMiddleware, function (req, res) {
       if (err) {
         console.log('Error', err)
       } else {
-        console.log(data);
         return res.render('author/articles-list', { data });
       }
     }
@@ -33,9 +32,6 @@ router.get('/create', authMiddleware, function (req, res) {
     }
   );
 
-
-  //redirect to edit page
-  //return res.render('author/article-form');
 });
 
 router.get('/edit/:id', function (req, res) {
@@ -117,23 +113,20 @@ router.get('/delete/:id', function (req, res) {
   );
 })
 
-/**
- * @desc Add a new article to the database
- */
-router.post("/store", (req, res) => {
-
+router.get('/publish/:id', function (req, res) {
   global.db.run(
-    "INSERT INTO articles ('article_title', 'article_subtitle', 'article_content', 'author_id') VALUES( ?,?,?,? );",
-    [req.body.title, req.body.subtitle, req.body.content, 1],
+    'UPDATE Articles set status = ? , published_on = ? where article_id = ? ;',
+    ["Published", new Date(), req.params.id],
     function (err) {
       if (err) {
-        return res.status(500).json(err)
+        console.log(err);
+        //return res.render('register-page', { error: "An Error occured" });
       } else {
-        return res.render('article-form');
-
+        return res.redirect('/articles/list');
       }
     }
   );
-});
+})
+
 
 module.exports = router;

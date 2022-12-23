@@ -45,6 +45,9 @@
                                     <td><%= item.status %></td>
                                     <td><a href="/articles/edit/<%= item.article_id %>" class="btn btn-primary btn-sm mx-1">Edit</a>
                                         <a href="/articles/settings/<%= item.article_id %>" class="btn btn-warning btn-sm mx-1">Settings</a>
+                                        <% if (item.status == "Draft"){ %>
+                                        <a href="/articles/publish/<%= item.article_id %>" class="btn btn-success btn-sm mx-1">Publish</a>
+                                        <% } %>
                                         <a href="/articles/delete/<%= item.article_id %>" class="btn btn-danger btn-sm mx-1">Delete</a>
                                     </td>
                                 </tr>
