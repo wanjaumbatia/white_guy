@@ -40,6 +40,14 @@ CREATE TABLE IF NOT EXISTS Articles (
     FOREIGN KEY (user_record_id) REFERENCES UserRecord(user_record_id)
 );
 
+CREATE TABLE IF NOT EXISTS Comments (
+    comment_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    comment_content TEXT NULL,
+    article_id  INT NOT NULL,
+    comment_date DATE NULL,
+    FOREIGN KEY (article_id) REFERENCES Articles(article_id)
+);
+
 --insert default data (if necessary here)
 
 INSERT INTO testUsers ("test_name") VALUES ("Simon Star");

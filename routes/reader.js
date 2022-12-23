@@ -31,7 +31,18 @@ router.get("/article/:id", (req, res) => {
             if (err) {
                 console.log('Error', err)
             } else {
-                return res.render('reader/article', { data: data[0] });
+                global.db.all(
+                    "SELECT * FROM Comments where article_id = ? ORDER BY comment_date DESC;",
+                    [req.params.id],
+                    function (err, comments) {
+                        if (err) {
+                            console.log('Error', err)
+                        } else {
+                            console.log(comments);
+                            return res.render('reader/article', { data: data[0], comments });
+                        }
+                    }
+                );
             }
         }
     );
@@ -61,5 +72,19 @@ router.get("/like_article/:id", (req, res) => {
         }
     );
 });
+
+router.post("/comment/:id", (req, res) => {
+    global.db.run(
+        'INSERT INTO Comments ("comment_content", "article_id", "comment_date") VALUES ( ?,?,? );',
+        [req.body.comment, req.params.id, new Date()],
+        function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                return res.redirect('/reader/article/' + req.params.id);
+            }
+        }
+    );
+})
 
 module.exports = router;
