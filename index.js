@@ -20,6 +20,7 @@ global.db = new sqlite3.Database('./database.db', function (err) {
 const userRoutes = require('./routes/user');
 const articlesRoutes = require('./routes/articles');
 const authRoutes = require('./routes/auth');
+const readerRoutes = require('./routes/reader');
 
 //set the app to use ejs for rendering
 app.set('view engine', 'ejs');
@@ -39,6 +40,7 @@ app.get('/', (req, res) => {
 app.use('/user', userRoutes);
 app.use('/articles', articlesRoutes);
 app.use('/auth', authRoutes);
+app.use('/reader', readerRoutes);
 
 
 app.listen(port, () => {

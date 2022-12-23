@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS Articles (
     create_date DATE NULL,
     published_on DATE NULL, 
     last_modified_date DATE NULL,
+    number_likes INTEGER NULL DEFAULT 0,
     FOREIGN KEY (user_record_id) REFERENCES UserRecord(user_record_id)
 );
 
