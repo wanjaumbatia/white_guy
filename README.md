@@ -63,7 +63,11 @@ Make sure that your package.json file includes all of the dependencies for your 
 
 #### Getting started with my project ####
 
-Edit this section to include any settings that should be adjusted in configuration files and concise instructions for how to access the reader and author pages once the app is running.
+* The Readers' Page is the default one, and it is accessed via (http://localhost:3000).The Readers' Page can also be accessed by clicking on ```Reader Home```. 
+* The Author's Page is accessed by login in as the author. If the author does not have an account, he or she is required to register.
+
+
+
 
 NB. we will ONLY run ```npm install```, ```npm run build-db```, and ```npm run start``` . We will NOT install additional packages to run your code and will NOT run additional build scripts. Be careful with any additional node dependencies that you use.
 
