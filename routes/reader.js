@@ -8,7 +8,7 @@ const express = require("express");
 const router = express.Router();
 const assert = require('assert');
 
-router.get("/home", (req, res) => {
+router.get("/", (req, res) => {
     //fetch all published articles order by publication date
     global.db.all(
         "SELECT * FROM articles where status = 'Published' ORDER BY published_on DESC;",

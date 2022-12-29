@@ -32,15 +32,15 @@ app.use(session({ secret: 'great_white_guy' }))
 app.use(bodyParser.json())
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// });
 
 //this adds all the userRoutes to the app under the path /user
 app.use('/user', userRoutes);
 app.use('/articles', articlesRoutes);
 app.use('/auth', authRoutes);
-app.use('/reader', readerRoutes);
+app.use('/', readerRoutes);
 
 
 app.listen(port, () => {
