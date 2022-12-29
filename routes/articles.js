@@ -11,7 +11,7 @@ router.get('/list', authMiddleware, function (req, res) {
       if (err) {
         console.log('Error', err)
       } else {
-        return res.render('author/articles-list', { data });
+        return res.render('author/articles-list', { data, user: req.session.username });
       }
     }
   );
