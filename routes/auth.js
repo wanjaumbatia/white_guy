@@ -3,7 +3,9 @@ const express = require("express");
 const router = express.Router();
 const assert = require('assert');
 
-
+/**
+ * @desc display the login page 
+ */
 router.get('/login', function (req, res) {
     return res.render('login-page', { error: false });
 });
@@ -29,19 +31,22 @@ router.post("/login", (req, res) => {
                     req.session.username = data[0].user_record_name;
                     return res.redirect('/articles/list');
                 }
-               
+
             }
         }
     );
 });
 
+/**
+ * @desc display the register page 
+ */
 router.get('/register', function (req, res) {
     return res.render('register-page', { error: false });
 });
 
 
 /**
- * @desc Login a user to the website
+ * @desc Registers an author to the website
  */
 router.post("/register", (req, res) => {
     global.db.run(
@@ -58,7 +63,11 @@ router.post("/register", (req, res) => {
     );
 });
 
-router.get("/logout", function(req, res){
+
+/**
+ * @desc logs out the user and deletes all session
+ */
+router.get("/logout", function (req, res) {
     req.session.destroy();
     return res.redirect("/");
 });

@@ -8,6 +8,9 @@ const express = require("express");
 const router = express.Router();
 const assert = require('assert');
 
+/**
+ * @desc returns all published articles and passes them to the view
+ */
 router.get("/", (req, res) => {
     //fetch all published articles order by publication date
     global.db.all(
@@ -22,6 +25,10 @@ router.get("/", (req, res) => {
     );
 });
 
+
+/**
+ * @desc returns a single article and passes it to the view
+ */
 router.get("/article/:id", (req, res) => {
     //fetch all published articles order by publication date
     global.db.all(
@@ -48,6 +55,10 @@ router.get("/article/:id", (req, res) => {
     );
 });
 
+
+/**
+ * @desc post a like to a specific article and increment it in the database
+ */
 router.get("/like_article/:id", (req, res) => {
     //fetch all published articles order by publication date
     global.db.all(
@@ -73,6 +84,9 @@ router.get("/like_article/:id", (req, res) => {
     );
 });
 
+/**
+ * @desc post a comment to a specific article
+ */
 router.post("/comment/:id", (req, res) => {
     global.db.run(
         'INSERT INTO Comments ("comment_content", "article_id", "comment_date") VALUES ( ?,?,? );',
