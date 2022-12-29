@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
             if (err) {
                 console.log('Error', err)
             } else {
-                return res.render('reader/homepage', { data });
+                return res.render('reader/homepage', { data, user: req.session.username });
             }
         }
     );
@@ -39,7 +39,7 @@ router.get("/article/:id", (req, res) => {
                             console.log('Error', err)
                         } else {
                             console.log(comments);
-                            return res.render('reader/article', { data: data[0], comments });
+                            return res.render('reader/article', { data: data[0], comments, user: req.session.username });
                         }
                     }
                 );
@@ -64,7 +64,7 @@ router.get("/like_article/:id", (req, res) => {
                         if (err) {
                             console.log('Error', err)
                         } else {
-                            return res.redirect('/reader/article/' + data[0].article_id);
+                            return res.redirect('/article/' + data[0].article_id);
                         }
                     }
                 );
@@ -81,7 +81,7 @@ router.post("/comment/:id", (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                return res.redirect('/reader/article/' + req.params.id);
+                return res.redirect('/article/' + req.params.id);
             }
         }
     );
