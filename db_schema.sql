@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Comments (
 --insert default data (if necessary here)
 
 INSERT INTO testUsers ("test_name") VALUES ("Simon Star");
-INSERT INTO UserRecord ("user_record_name", "user_record_password") VALUES ("jeff", "password");
+INSERT INTO UserRecord ("user_record_name", "user_record_password") VALUES ("john", "password");
 INSERT INTO UserRecord ("user_record_name", "user_record_password") VALUES ("admin", "password");
 INSERT INTO testUserRecords ("test_record_value", "test_user_id") VALUES( "Lorem ipsum dolor sit amet", 1); --try changing the test_user_id to a different number and you will get an error
 
